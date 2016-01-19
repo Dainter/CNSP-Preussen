@@ -7,7 +7,6 @@ using System.Xml;
 using System.Drawing;
 using CNSP.Core;
 using CNSP.Platform;
-using CNSP.Platform.Paint;
 using CNSP.KeyWord;
 
 namespace CNSP.Platform.IO
@@ -22,7 +21,7 @@ namespace CNSP.Platform.IO
          *      StyleSet pStyle 绘制样式集
          * Return Value:cNet
          */
-        cNet IfIOStrategy.ReadFile(string sPath, StyleSet PaintStyle)
+        cNet IfIOStrategy.ReadFile(string sPath)
         {
             FileStream stream = null;
             XmlDocument doc = new XmlDocument();
@@ -51,7 +50,7 @@ namespace CNSP.Platform.IO
             Nodelist = xmlroot.ChildNodes;                                             //获取节点列表
             xmltmp = Nodelist[0].ChildNodes[3];
             //创建网络
-            NewNet = new cNet(Nodelist.Count, PaintStyle);
+            NewNet = new cNet(Nodelist.Count);
             for (iNum = 0; iNum < Nodelist.Count; iNum++)
             {
                 switch (xmltmp.Name)
@@ -64,12 +63,11 @@ namespace CNSP.Platform.IO
                         break;
                 } 
             }
-            NewNet.XMLtoNet(doc, PaintStyle);
+            NewNet.XMLtoNet(doc);
             if (NewNet.intNumber == 0)
             {
                 return null;
             }
-            NewNet.Initialized();
             return NewNet;
         }
 

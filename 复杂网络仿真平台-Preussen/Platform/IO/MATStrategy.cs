@@ -7,7 +7,6 @@ using System.IO;
 using System.Xml;
 using CNSP.Core;
 using CNSP.Platform;
-using CNSP.Platform.Paint;
 
 namespace CNSP.Platform.IO
 {
@@ -35,7 +34,7 @@ namespace CNSP.Platform.IO
          *      StyleSet pStyle 绘制样式集
          * Return Value:cNet
          */
-        cNet IfIOStrategy.ReadFile(string sPath, StyleSet PaintStyle)
+        cNet IfIOStrategy.ReadFile(string sPath)
         {
             int intType, intNum;
             cNet NewNet = null;
@@ -72,7 +71,7 @@ namespace CNSP.Platform.IO
             			{
             				break;
             			}
-            			NewNet = BuileNetwork(bytMatrix, PaintStyle);
+            			NewNet = BuileNetwork(bytMatrix);
             		}
             		break;
             	}	//多元素文件只取第一个矩阵
@@ -176,7 +175,7 @@ namespace CNSP.Platform.IO
          *      StyleSet pStyle 绘制样式集
          * Return Value:cNet
          */
-        cNet BuileNetwork(Byte[,] bytMatrix, StyleSet PaintStyle)
+        cNet BuileNetwork(Byte[,] bytMatrix)
 		{
 			cNet NewNet;
 			IfPlatform NewNode;
@@ -185,7 +184,7 @@ namespace CNSP.Platform.IO
             intRow = bytMatrix.GetLength(0);
 			intCol = bytMatrix.GetLength(1);
 			
-			NewNet = new cNet(intRow, PaintStyle);
+			NewNet = new cNet(intRow);
 			for(i = 0; i < intRow; i++)
 			{
 				NewNode = new cNode(i);
@@ -202,8 +201,6 @@ namespace CNSP.Platform.IO
             {
                 return null;
             }
-            NewNet.Initialized();
-
             return NewNet;
 		}
         /*

@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using CNSP.Core;
 using CNSP.Platform;
-using CNSP.Platform.Paint;
 using CNSP.KeyWord;
 using CNSP.DataBase;
 
@@ -124,7 +123,7 @@ namespace CNSP.Platform.IO
          *      StyleSet pStyle 绘制样式集
          * Return Value:cNet
          */
-        cNet IfIOStrategy.ReadFile(string sPath, StyleSet PaintStyle)
+        cNet IfIOStrategy.ReadFile(string sPath)
         {
             cNet NewNet = null;
             List<WordResult> WordList;
@@ -165,7 +164,7 @@ namespace CNSP.Platform.IO
                 return null;
             }
             //6.构建网络并连边
-            NewNet = BuildKeyWordNet(NodeList, WordList, PaintStyle);
+            NewNet = BuildKeyWordNet(NodeList, WordList);
             if (NewNet == null)
             {
                 return null;
@@ -457,13 +456,13 @@ namespace CNSP.Platform.IO
          *      StyleSet PaintStyle     绘制样式集
          * Return Value:cNet
          */
-        cNet BuildKeyWordNet(List<kNode> NodeList, List<WordResult> WordList, StyleSet PaintStyle)
+        cNet BuildKeyWordNet(List<kNode> NodeList, List<WordResult> WordList)
         {//核心算法C， 构造网络，主要任务是找到符合条件的两个节点，在他们之间加边。
             cNet NewNet = null;
             int intSource, intTarget, intSourLine, intSourPos;
 
             //1 构造网络并加入节点
-            NewNet = new cNet(NodeList.Count, PaintStyle);
+            NewNet = new cNet(NodeList.Count);
             foreach (IfPlatform curNode in NodeList)
             {
                 NewNet.Network.Add(curNode);
@@ -496,8 +495,6 @@ namespace CNSP.Platform.IO
             {
                 return null;
             }
-            //网络后续处理
-            NewNet.Initialized();
             return NewNet;
         }
         /*

@@ -7,7 +7,6 @@ using System.IO;
 using System.Xml;
 using CNSP.Core;
 using CNSP.Platform;
-using CNSP.Platform.Paint;
 
 namespace CNSP.Platform.IO
 {
@@ -72,7 +71,7 @@ namespace CNSP.Platform.IO
          *      StyleSet pStyle 绘制样式集
          * Return Value:cNet
          */
-        cNet IfIOStrategy.ReadFile(string sPath, StyleSet PaintStyle)
+        cNet IfIOStrategy.ReadFile(string sPath)
         {
             StreamReader Reader;
             cNet NewNet;
@@ -80,7 +79,7 @@ namespace CNSP.Platform.IO
             int i, intLines;
 
             intLines = CountNodes(sPath);
-            NewNet = new cNet(intLines, PaintStyle);
+            NewNet = new cNet(intLines);
             for (i = 0; i < intLines; i++)
             {
                 NewNet.Network.Add(new cNode(i));
@@ -104,8 +103,6 @@ namespace CNSP.Platform.IO
             {
                 return null;
             }
-            NewNet.Initialized();                                         //执行初始化函数
-
             return NewNet;
         }
         /*
