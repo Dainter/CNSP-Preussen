@@ -623,7 +623,7 @@ namespace CNSP
             this.TabDegDist.Location = new System.Drawing.Point(4, 22);
             this.TabDegDist.Name = "TabDegDist";
             this.TabDegDist.Padding = new System.Windows.Forms.Padding(3);
-            this.TabDegDist.Size = new System.Drawing.Size(477, 408);
+            this.TabDegDist.Size = new System.Drawing.Size(477, 413);
             this.TabDegDist.TabIndex = 1;
             this.TabDegDist.Text = "网络度分布";
             // 
@@ -655,7 +655,7 @@ namespace CNSP
             series1.Name = "DegLine";
             series1.ShadowOffset = 1;
             this.DegreeChart.Series.Add(series1);
-            this.DegreeChart.Size = new System.Drawing.Size(471, 402);
+            this.DegreeChart.Size = new System.Drawing.Size(471, 407);
             this.DegreeChart.TabIndex = 0;
             this.DegreeChart.Text = "节点度概率分布";
             title1.Name = "Title1";
@@ -671,12 +671,13 @@ namespace CNSP
             this.TabLogDist.Location = new System.Drawing.Point(4, 22);
             this.TabLogDist.Name = "TabLogDist";
             this.TabLogDist.Padding = new System.Windows.Forms.Padding(3);
-            this.TabLogDist.Size = new System.Drawing.Size(477, 408);
+            this.TabLogDist.Size = new System.Drawing.Size(477, 413);
             this.TabLogDist.TabIndex = 2;
             this.TabLogDist.Text = "网络对数分布";
             // 
             // LogDegree
             // 
+            chartArea2.AxisX.IsLogarithmic = true;
             chartArea2.AxisX.Title = "节点度";
             chartArea2.AxisY.IsLogarithmic = true;
             chartArea2.AxisY.Title = "p(k)";
@@ -715,7 +716,7 @@ namespace CNSP
             series2.Name = "LogDist";
             series2.ShadowOffset = 1;
             this.LogDegree.Series.Add(series2);
-            this.LogDegree.Size = new System.Drawing.Size(471, 402);
+            this.LogDegree.Size = new System.Drawing.Size(471, 407);
             this.LogDegree.TabIndex = 3;
             this.LogDegree.Text = "节点度概率分布";
             title2.Name = "Title1";

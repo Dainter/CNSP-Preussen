@@ -712,7 +712,8 @@ namespace CNSP
            {
                if (ComplexNet.netState.intDegDist[i] > 0)
                {
-                   dxvalue[j] = Convert.ToInt32 (Math.Ceiling(20 * Math.Log10(Convert.ToDouble(i))));  //计算对数，填入数组
+                   //填入数组
+                   dxvalue[j] = i;
                    dyvalue[j] = ComplexNet.netState.intDegDist[i] * 1.0f / ComplexNet.intEdge;
                    j += 1;
                }
