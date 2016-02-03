@@ -165,7 +165,7 @@ namespace CNSP.Platform.Paint
                         continue;
                     }
                     DrawLine(ref GraCam, curNode.Location, intRadiusSource,
-                                    tarNode.Location, intRadiusTarget, edge.Value);
+                                    tarNode.Location, intRadiusTarget, (int)Math.Ceiling(edge.Value));
                 }
             }
             //绘制节点
@@ -265,14 +265,14 @@ namespace CNSP.Platform.Paint
                 DrawLine(ref GraCam,
                                curNode.Location, intRadiusSource,
                                tarNode.Location, intRadiusTarget,
-                               edge.Value);
+                               (int)Math.Ceiling(edge.Value));
                 if (curNetwork.Type == "无向图")
                 {
                     //目标点到起始节点连边
                     DrawLine(ref GraCam,
                                     tarNode.Location, intRadiusTarget,
                                    curNode.Location, intRadiusSource,
-                                   edge.Value);
+                                   (int)Math.Ceiling(edge.Value));
                 }
             }
             if (curNetwork.Type == "有向图")
@@ -288,7 +288,7 @@ namespace CNSP.Platform.Paint
                         DrawLine(ref GraCam,
                                        tarNode.Location, intRadiusTarget,
                                        curNode.Location, intRadiusSource,
-                                       tarNode.GetWeight(iNum));
+                                       (int)Math.Ceiling(tarNode.GetWeight(iNum)));
                     }
                 }
             }

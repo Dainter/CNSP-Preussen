@@ -40,7 +40,8 @@ namespace CNSP.Platform.Parameter
         {
             XmlNode edges_xml;
             Node newNode;
-            int intNum, tar, value;
+            int intNum, tar;
+            double value;
 
             intNum = Convert.ToInt32(xNode.Attributes.GetNamedItem("num").Value);
             newNode = new Node(intNum);                                            //新建节点
@@ -59,16 +60,16 @@ namespace CNSP.Platform.Parameter
             foreach (XmlNode edge in edges_xml.ChildNodes)                                     //遍历连边列表
             {
                 tar = Convert.ToInt32(edge.Attributes.GetNamedItem("Target").Value);//读出目标节点
-                value = Convert.ToInt32(edge.InnerText);                           //读出连边权重
+                value = Convert.ToDouble(edge.InnerText);                           //读出连边权重
                 newNode.AddEdge(tar, value);                                        //加入连边
             }
             this.node = newNode;
         }
 
         //增加连边
-        public bool AddEdge(int iTarget, int iValue)
+        public bool AddEdge(int iTarget, double dValue)
         {
-            return this.node.AddEdge(iTarget, iValue);
+            return this.node.AddEdge(iTarget, dValue);
         }
 
         //删除连边

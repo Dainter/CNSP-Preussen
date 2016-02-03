@@ -192,7 +192,7 @@ namespace CNSP.Platform.IO
 				{
 					if(bytMatrix[i, j] != 0)
 					{
-						NewNode.AddEdge(j, (int)bytMatrix[i, j]);
+						NewNode.AddEdge(j, (double)bytMatrix[i, j]);
 					}
 				}
 				NewNet.Network.Add(NewNode);
@@ -345,7 +345,7 @@ namespace CNSP.Platform.IO
                 foreach (XmlNode edge in edges_xml.ChildNodes)                                     //遍历连边列表
                 {
                     intTarget = Convert.ToInt32(edge.Attributes.GetNamedItem("Target").Value);//读出目标节点
-                    bytValue = Convert.ToByte(edge.InnerText);                           //读出连边权重
+                    bytValue = Convert.ToByte((int)Math.Ceiling(Convert.ToDouble(edge.InnerText)));                           //读出连边权重
                     bytMatrix[intSource, intTarget] = bytValue;
                 }
             }

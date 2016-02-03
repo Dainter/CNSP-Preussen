@@ -161,13 +161,13 @@ namespace CNSP.Platform
         }
 
         //新增单条连边函数，提供两端点编号与权重
-        public void AddEdge(int iNum, int iTarget, int iValue)
+        public void AddEdge(int iNum, int iTarget, double dValue)
         {
             bool a, b;
             if (iNum != iTarget)//两端点不同
             {
-                a = Network[iNum].AddEdge(iTarget, iValue);//分别调用两个节点的成员函数，实现加边。
-                b = Network[iTarget].AddEdge(iNum, iValue);
+                a = Network[iNum].AddEdge(iTarget, dValue);//分别调用两个节点的成员函数，实现加边。
+                b = Network[iTarget].AddEdge(iNum, dValue);
                 if (a == true && b == true)//两次调用都成功则将总边数+1
                 {
                     intEdge += 1;
@@ -205,6 +205,33 @@ namespace CNSP.Platform
         {
             NetPainter.DrawHighLightNodeEdge(iNum, newLoc, ref GraCam);
         }
+        
+        //更新网络样式集，并刷新节点图片列表
+        //public void UpdateStyle(StyleSet GlobalStyle)
+        //{
+        //    if (GlobalStyle == null)
+        //    {
+        //        return;
+        //    }
+        //    //相同样式集则退出
+        //    if (NetPainter.PaintStyle.Equals(GlobalStyle) == true)
+        //    {
+        //        return;
+        //    }
+        //    if (GlobalStyle.Sharp == NetPainter.PaintStyle.Sharp)
+        //    {
+        //        NetPainter.UpdateStyle(GlobalStyle);
+        //    }
+        //    else
+        //    {
+        //        switch (GlobalStyle.Sharp)
+        //        {
+        //            case (StyleSet.sharp.Round):
+        //                NetPainter = new DefaultStrategy(GlobalStyle);
+        //                break;
+        //        }
+        //    }
+        //}
 
         //更新网络样式集，并刷新节点图片列表
         public void UpdateStyle(Object sender, StyleUpdateEventArgs e)

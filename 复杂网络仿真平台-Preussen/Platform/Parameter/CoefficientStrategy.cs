@@ -45,16 +45,16 @@ namespace CNSP.Platform.Parameter
                 foreach (Edge edge1 in curNode)//遍历当前节点的所有邻居
                 {
                     intLeft = edge1.Target;
-                    intUnit = edge1.Value;
+                    intUnit = (int)Math.Ceiling(edge1.Value);
                     foreach (Edge edge2 in curNode)//遍历当前节点的所有邻居
                     {
                         intRight = edge2.Target;
-                        intUnit += edge2.Value;
+                        intUnit += (int)Math.Ceiling(edge2.Value);
                         if (intRight == intLeft)//相等跳过
                         {
                             continue;
                         }
-                        intRes = IsFriend(intLeft, intRight, curNetwork.Network);
+                        intRes = (int)Math.Ceiling(IsFriend(intLeft, intRight, curNetwork.Network));
                         if (intRes == -1)//不相邻则加上当前边的权重
                         {
                             intTotal += intUnit;
@@ -80,7 +80,7 @@ namespace CNSP.Platform.Parameter
         }
         
         //如果是二者是邻居，返回他们之间的连边权重，否则返回-1
-        int IsFriend(int iSour, int iTar, List<pNode> Network)
+        double IsFriend(int iSour, int iTar, List<pNode> Network)
         {
             foreach (Edge edge in Network[iSour])
             {

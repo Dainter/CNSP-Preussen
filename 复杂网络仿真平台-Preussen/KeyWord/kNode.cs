@@ -95,9 +95,9 @@ namespace CNSP.KeyWord
             this.intPosition = word.Position;
         }
         //增加连边
-        bool IfPlatform.AddEdge(int iTarget, int iValue)
+        bool IfPlatform.AddEdge(int iTarget, double dValue)
         {
-            return this.node.AddEdge(iTarget, iValue);
+            return this.node.AddEdge(iTarget, dValue);
         }
         //去除连边
         bool IfPlatform.DecEdge(int iTarget)
@@ -106,7 +106,7 @@ namespace CNSP.KeyWord
         }
 
         //获取指定连边权重
-        int IfPlatform.GetWeight(int iTarget)
+        double IfPlatform.GetWeight(int iTarget)
         {
             if (node.ContainsEdge(iTarget) == true)
             {
@@ -130,7 +130,8 @@ namespace CNSP.KeyWord
         {
             XmlNode degree_xml, x_xml, y_xml, word_xml, type_xml, line_xml, pos_xml, edges_xml;
             Node newNode;
-            int intNum, x, y, tar, value;
+            int intNum, x, y, tar;
+            double value;
 
             intNum = Convert.ToInt32(xNode.Attributes.GetNamedItem("num").Value) - intNumOffset;
             newNode = new Node(intNum);                                            //新建节点
@@ -187,7 +188,7 @@ namespace CNSP.KeyWord
             foreach (XmlNode edge in edges_xml.ChildNodes)                                     //遍历连边列表
             {
                 tar = Convert.ToInt32(edge.Attributes.GetNamedItem("Target").Value) - intNumOffset;//读出目标节点
-                value = Convert.ToInt32(edge.InnerText);                           //读出连边权重
+                value = Convert.ToDouble(edge.InnerText);                           //读出连边权重
                 newNode.AddEdge(tar, value);                                        //加入连边
             }
             this.node = newNode;

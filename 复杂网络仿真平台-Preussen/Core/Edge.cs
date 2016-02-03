@@ -9,7 +9,7 @@ namespace CNSP.Core
     public class Edge//复杂网络连边类：负责存储网络连边信息
     {
         private int intSource;//连边起点
-        private int intValue;//连边权重
+        private double dubValue;//连边权重
         private int intTarget;//连边终点
         //属性//////////////////////////
         public int Source
@@ -23,15 +23,15 @@ namespace CNSP.Core
                 intSource =value; 
             }
         }
-        public int Value
+        public double Value
         {
             get
             {
-                return intValue;
+                return dubValue;
             }
             set
             {
-                intValue = value;
+                dubValue = value;
             }
         }
         public int Target
@@ -55,11 +55,11 @@ namespace CNSP.Core
          *      int iValue 连边权重
          * Return Value:Edge
          */
-        public Edge(int iSource , int iTarget, int iValue)//构造函数 对三个变量进行赋值
+        public Edge(int iSource , int iTarget, double dValue)//构造函数 对三个变量进行赋值
         {
             this.intSource = iSource;
             this.intTarget = iTarget;
-            this.intValue = iValue;
+            this.dubValue = dValue;
         }
         /*
          * Function: XMLItem
@@ -74,7 +74,7 @@ namespace CNSP.Core
             XmlText Valuetxt;
 
             curEdge.SetAttribute("Target", (intTarget).ToString());   //创建属性元素，值为目标节点
-            Valuetxt = doc.CreateTextNode(intValue.ToString());     //创建文本元素，值为连编权重
+            Valuetxt = doc.CreateTextNode(dubValue.ToString());     //创建文本元素，值为连编权重
             curEdge.AppendChild(Valuetxt);                                  //属性和文本元素加入当前连边元素
 
             return curEdge;

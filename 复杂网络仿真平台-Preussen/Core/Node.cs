@@ -66,14 +66,14 @@ namespace CNSP.Core
          *      int iValue 连边权重
          * Return Value:bool
          */
-        public bool AddEdge(int iTarget, int iValue)
+        public bool AddEdge(int iTarget, double dValue)
         {
             if (iTarget != intNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
             {
                 if (Links.ContainsKey(iTarget) == false)
                 {
                     intDegree++;
-                    Links.Add(iTarget, new Edge(intNum, iTarget, iValue));   //向Links中加入新项目  
+                    Links.Add(iTarget, new Edge(intNum, iTarget, dValue));   //向Links中加入新项目  
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace CNSP.Core
          *      int iTarget 节点编号
          * Return Value:int
          */
-        public int ValueOfEdge(int iTarget)
+        public double ValueOfEdge(int iTarget)
         {
             int iRet = 0;
             if (Links.ContainsKey(iTarget))

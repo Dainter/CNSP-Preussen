@@ -63,7 +63,8 @@ namespace CNSP.Platform.Paint
         {
             XmlNode x_xml, y_xml, edges_xml;
             Node newNode;
-            int x, y, intNum, tar, value;
+            int x, y, intNum, tar;
+            double value;
 
             intNum = Convert.ToInt32(xNode.Attributes.GetNamedItem("num").Value);
             newNode = new Node(intNum);                                            //新建节点
@@ -94,14 +95,14 @@ namespace CNSP.Platform.Paint
             foreach (XmlNode edge in edges_xml.ChildNodes)                                     //遍历连边列表
             {
                 tar = Convert.ToInt32(edge.Attributes.GetNamedItem("Target").Value);//读出目标节点
-                value = Convert.ToInt32(edge.InnerText);                           //读出连边权重
+                value = Convert.ToDouble(edge.InnerText);                           //读出连边权重
                 newNode.AddEdge(tar, value);                                        //加入连边
             }
             this.node = newNode;
         }
 
         //获取指定连边权重
-        public int GetWeight(int iTarget)
+        public double GetWeight(int iTarget)
         {
             if (node.ContainsEdge(iTarget) == true)
             {

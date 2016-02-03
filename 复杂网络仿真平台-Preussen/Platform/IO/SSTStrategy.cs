@@ -113,7 +113,7 @@ namespace CNSP.Platform.IO
                     intTarget = Convert.ToInt32(strLink[i]) - intNumOffset;
                     if (iNum != intTarget)
                     {
-                        NewNode.AddEdge(intTarget, Convert.ToInt32(strValue[i]));
+                        NewNode.AddEdge(intTarget, Convert.ToDouble(strValue[i]));
                     }
                 }
             }

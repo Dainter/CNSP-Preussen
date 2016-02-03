@@ -116,18 +116,19 @@ namespace CNSP.Platform.IO
          */
         private static void PhraseTriad(ref cNet cNetwork, string sLine, string Separator)
         {
-            int intSour, intTar, intValue;
+            int intSour, intTar;
+            double dubValue;
             string[] strSeg;
 
-            intValue = 1;
+            dubValue = 1.0;
             strSeg = sLine.Split(new string[] { Separator }, StringSplitOptions.None);//首先使用Separator进行信息区块划分
             intSour = Convert.ToInt32(strSeg[intSourceOffset]);
             intTar = Convert.ToInt32(strSeg[intTargetOffset]);
             if (strSeg.Length == 3)
             {
-                intValue = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(strSeg[intValueOffset])));
+                dubValue = Convert.ToDouble(strSeg[intValueOffset]);
             }
-            cNetwork.AddEdge(intSour, intTar, intValue);                              //根据读出的信息加边
+            cNetwork.AddEdge(intSour, intTar, dubValue);                              //根据读出的信息加边
         }
         /*
          * Function: SaveFile
